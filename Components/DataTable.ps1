@@ -1,3 +1,6 @@
+# Copyright (c) 2014-2015 Michael Sorens
+# https://github.com/msorens/MonitorFactory
+
 Set-StrictMode -Version Latest
 
 function OutDataTable {
