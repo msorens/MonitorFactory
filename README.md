@@ -16,4 +16,7 @@ Usage
 ----------
 See extensive help available from the cmdlet itself: `Get-Help Start-Monitor`
 
+Here's a sample of what the output looks like:
+![MonitorFactory sample with callouts](https://cloud.githubusercontent.com/assets/6817500/9609285/c510f2d2-5087-11e5-934c-53ad9054b167.jpg)
+
 _More notes coming soon!_
