@@ -150,6 +150,11 @@ When you need to use an external module within your script block
 you must explictly bring it in scope inside the script block;
 it will not be inherited from your current scope. Depending on the module
 this will require an Add-PSSnapin call or an Import-Module call.
+These Add-PSSnapin and Import-Module statements must be the first code
+in your script block. If you think you may be having an issue of your imports
+not actually being imported--especially when running as a background job--use
+the -Verbose parameter; it will identify where it thinks the separation
+between your imports and the rest of your code lies.
 
 
 == Operation Notes ==
@@ -278,10 +283,25 @@ function Start-Monitor
 		# Separate leading imports from the remainder of a script block.
 		function SplitConcerns([string]$ScriptBlockText)
 		{
-			$regex = '^\s*((?:(?:Import-Module|Add-PSSnapin)[^;]+;\s*)+)(.*)'
-			$result = if ($ScriptBlockText -match $regex)
-			{ $matches[1], $matches[2] } else { $null, $ScriptBlockText }
+			$regex = '\A\s*((?:\s*(?:Import-Module|Add-PSSnapin).*?(?:;|$))+)(.*)'
+			$opt = [System.Text.RegularExpressions.RegexOptions]
+			$options = $opt::MultiLine -bor $opt::SingleLine -bor $opt::IgnoreCase
+			$match = [regex]::Match($ScriptBlockText, $regex, $options)
+			$result = if ($match.Success) { $match.Groups[1].Value, $match.Groups[2].Value }
+			else { $null, $ScriptBlockText }
 			return $result
+
+# variation:
+#			$regex = '^\s*(?:Import-Module|Add-PSSnapin)'
+#			$lines =  $ScriptBlockText.Split([string[]]("`r`n",";"), [StringSplitOptions]::RemoveEmptyEntries) | ? { $_ -notmatch '^\s+$' }
+#			$imports = @()
+#			$body = @()
+#			foreach ($line in $lines)
+#			{
+#			    if ($body -or $line -notmatch $regex) { $body += $line }
+#			    else { $imports += $line }
+#			}
+#			return ($imports -join "`n"), ($body -join "`n")
 		}
 
 		$scriptBlockText = $using:ScriptBlock # '$using' converts to string!
@@ -290,8 +310,8 @@ function Start-Monitor
 		if ($using:VerbosePreference -gt 0) { 
 			# job output that does *not* impact what is fed to the grid vew.
 			Write-Host "verbose = $using:VerbosePreference"
-			Write-Host "imports = $imports"
-			Write-Host "scriptBlockText = $scriptBlockText"
+			Write-Host "imports = [$imports]"
+			Write-Host "scriptBlockText = [$scriptBlockText]"
 		}
 		$params = @{
 			DisplayName = $using:DisplayName
