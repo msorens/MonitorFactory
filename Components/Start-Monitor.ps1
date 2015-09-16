@@ -290,18 +290,6 @@ function Start-Monitor
 			$result = if ($match.Success) { $match.Groups[1].Value, $match.Groups[2].Value }
 			else { $null, $ScriptBlockText }
 			return $result
-
-# variation:
-#			$regex = '^\s*(?:Import-Module|Add-PSSnapin)'
-#			$lines =  $ScriptBlockText.Split([string[]]("`r`n",";"), [StringSplitOptions]::RemoveEmptyEntries) | ? { $_ -notmatch '^\s+$' }
-#			$imports = @()
-#			$body = @()
-#			foreach ($line in $lines)
-#			{
-#			    if ($body -or $line -notmatch $regex) { $body += $line }
-#			    else { $imports += $line }
-#			}
-#			return ($imports -join "`n"), ($body -join "`n")
 		}
 
 		$scriptBlockText = $using:ScriptBlock # '$using' converts to string!
@@ -487,9 +475,11 @@ function UpdateDataTableAndHighlightAction([string]$color = $Default.RefreshHigh
 	$tracker.StatusStrip.Update()
 	$table = Invoke-Command -ScriptBlock $ScriptBlock -ArgumentList $ArgumentList | OutDataTable
 	UpdateDataGrid $table
-	$tracker.PriorDataMenuItem.Checked = $false
 	$tracker.CommandLabel.BackColor = $Default.NeutralColor
-#$tracker.RowCountLabel.BackColor = $Default.NeutralColor
+
+	# reset after possibly showing prior data
+	$tracker.PriorDataMenuItem.Checked = $false
+	$tracker.RowCountLabel.BackColor = $Default.NeutralColor
 
 	if ($tracker.PriorData -ne $null) { $tracker.PriorData.Dispose() }
 	$tracker.PriorData = $tracker.CurrentData
