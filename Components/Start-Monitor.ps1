@@ -429,7 +429,6 @@ $EventHandlers = @{
 		$tracker.Form.close()
 	}
 	OnClickSwapData = {
-		#BUG! $table = if ($tracker.PriorDataMenuItem.Checked) { $tracker.PriorData} else { $tracker.CurrentData}
 		if ($tracker.PriorDataMenuItem.Checked) {
 			$table = $tracker.PriorData
 			$tracker.RowCountLabel.BackColor = $Default.HistoricalDataColor
