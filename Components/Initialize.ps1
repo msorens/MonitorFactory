@@ -58,7 +58,7 @@ function NormalizeInterval()
 				break
 			}
 			default {
-				throw "Invalid interval [$Interval)]: must be an integer optional followed by 'seconds', 'minutes', or 'hours'"
+				throw "Invalid interval [$Interval]: must be an integer optionally followed by 'seconds', 'minutes', or 'hours'"
 			}
 	}
 
