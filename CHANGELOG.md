@@ -3,8 +3,10 @@
 FEATURES:
 
 IMPROVEMENTS:
+  - Enforce PowerShell V3 requirement.
 
 BUG FIXES:
+  - Removed stray character and corrected grammar in error message.
 
 
 ## 1.0.02 (September 16, 2015)

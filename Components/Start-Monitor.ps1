@@ -1,6 +1,7 @@
 # Copyright (c) 2014-2015 Michael Sorens
 # https://github.com/msorens/MonitorFactory
 
+#requires -Version 3
 Set-StrictMode -Version Latest
 
 <#
