@@ -40,6 +40,11 @@ function GenerateCaptions([string]$suppliedDisplayName)
 # and determine display strings relating to it.
 function NormalizeInterval([string]$suppliedInterval)
 {
+	$hour_label = 'hours'
+	$minute_label = 'minutes'
+	$second_label = 'seconds'
+	$validUnits = "'$second_label', '$minute_label', or '$hour_label'"
+
 	$intervalValue = 
 		switch -regex ($suppliedInterval) {
 			'^\d+$' {
@@ -47,26 +52,25 @@ function NormalizeInterval([string]$suppliedInterval)
 				break
 			}
 			'^(?<number>\d+)\s*(?<unit>\w+)$' {
-			'^(?<number>\d+)(?<unit>\w+)$' {
 				$re, $number = "^$($matches.unit)", $matches.number
-				$multiplier = if ('hours' -match $re) { 3600 }
-				elseif ('minutes' -match $re) { 60 }
-				elseif ('seconds' -match $re) { 1 }
+				$multiplier = if ($hour_label -match $re) { 3600 }
+				elseif ($minute_label -match $re) { 60 }
+				elseif ($second_label -match $re) { 1 }
 				else {
-					throw "Invalid unit [$($matches.unit)]: must be 'seconds', 'minutes', or 'hours'"
+					throw "Invalid unit [$($matches.unit)]: must be $validUnits"
 				};
 				[int]$number * $multiplier
 				break
 			}
 			default {
-				throw "Invalid interval [$suppliedInterval]: must be an integer optionally followed by 'seconds', 'minutes', or 'hours'"
+				throw "Invalid interval [$suppliedInterval]: must be an integer optionally followed by $validUnits"
 			}
 	}
 
 	$displayIntervalValue, $displayIntervalUnits = 
-		if ($intervalValue -le $Default.CutOffSecondsToShowSeconds) { $intervalValue, 'seconds'}
-		elseif ($intervalValue -le $Default.CutOffSecondsToShowMinutes) { ($intervalValue / 60), 'minutes' }
-		else { ($intervalValue / 3600), 'hours' }
+		if ($intervalValue -le $Default.CutOffSecondsToShowSeconds) { $intervalValue, $second_label }
+		elseif ($intervalValue -le $Default.CutOffSecondsToShowMinutes) { ($intervalValue / 60), $minute_label }
+		else { ($intervalValue / 3600), $hour_label }
 
 	$intervalFormatString = 
 		if ([int]$displayIntervalValue -eq $displayIntervalValue) 
