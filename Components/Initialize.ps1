@@ -46,6 +46,7 @@ function NormalizeInterval([string]$suppliedInterval)
 				[int]$suppliedInterval
 				break
 			}
+			'^(?<number>\d+)\s*(?<unit>\w+)$' {
 			'^(?<number>\d+)(?<unit>\w+)$' {
 				$re, $number = "^$($matches.unit)", $matches.number
 				$multiplier = if ('hours' -match $re) { 3600 }
