@@ -273,7 +273,7 @@ function Start-Monitor
 
 	# Return value not used here; this just gives immediate feedback to
 	# the user in the event of an incorrectly specified value.
-	$null = NormalizeInterval
+	$null = NormalizeInterval $Interval
 
 	$myModule = (Get-Command Start-Monitor).Module.Path  -replace '\.psm1$','.psd1'
 	$job = Start-Job {
@@ -370,8 +370,8 @@ function Start-MonitorSync
 		[object[]]$ArgumentList = @()
 	)
 
-	$intervalItems = NormalizeInterval
-	$captionItems = GenerateCaptions
+	$intervalItems = NormalizeInterval $Interval
+	$captionItems = GenerateCaptions $DisplayName
 	$formItems = GenerateForm $captionItems $EventHandlers
 	$timerItems = GenerateTimer $EventHandlers
 	$dynamicItems = @{

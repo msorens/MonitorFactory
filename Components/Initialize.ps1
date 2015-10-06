@@ -3,14 +3,14 @@
 
 Set-StrictMode -Version Latest
 
-function GenerateCaptions()
+function GenerateCaptions([string]$suppliedDisplayName)
 {
 	$baseCmdText = $ScriptBlock.ToString().Trim()
 
 	$titleBarText =
-		if ($DisplayName -eq '')
+		if ($suppliedDisplayName -eq '')
 		{ $baseCmdText } # title bar auto-trims and adds "..."
-		else { $DisplayName }
+		else { $suppliedDisplayName }
 
 	# for tooltip, add line breaks between commands if lengthy
 	$toolTipText =
@@ -36,14 +36,14 @@ function GenerateCaptions()
 	}
 }
 
-# Convert $Interval with units to a pure number of seconds,
+# Convert interval with units to a pure number of seconds,
 # and determine display strings relating to it.
-function NormalizeInterval()
+function NormalizeInterval([string]$suppliedInterval)
 {
 	$intervalValue = 
-		switch -regex ($Interval) {
+		switch -regex ($suppliedInterval) {
 			'^\d+$' {
-				[int]$Interval
+				[int]$suppliedInterval
 				break
 			}
 			'^(?<number>\d+)(?<unit>\w+)$' {
@@ -58,7 +58,7 @@ function NormalizeInterval()
 				break
 			}
 			default {
-				throw "Invalid interval [$Interval]: must be an integer optionally followed by 'seconds', 'minutes', or 'hours'"
+				throw "Invalid interval [$suppliedInterval]: must be an integer optionally followed by 'seconds', 'minutes', or 'hours'"
 			}
 	}
 
