@@ -1,9 +1,15 @@
 ## Next Release
 
 FEATURES:
+IMPROVEMENTS:
+BUG FIXES:
+
+## 1.0.03 (October 7, 2015)
 
 IMPROVEMENTS:
   - Enforce PowerShell V3 requirement.
+  - Code cleanup: Removed global variable usages in Initialize.ps1.
+  - Allow spaces between number and unit in cmdline Interval parameter.
 
 BUG FIXES:
   - Removed stray character and corrected grammar in error message.
