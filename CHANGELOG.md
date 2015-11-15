@@ -4,6 +4,19 @@ FEATURES:
 IMPROVEMENTS:
 BUG FIXES:
 
+## 1.0.04 (November 16, 2015)
+
+IMPROVEMENTS TO Start-SqlMonitor Wrapper:
+  - Filters out meta-columns added due to PowerShell bug. (See http://bit.ly/1H3vFtl)
+  - Added option to use literal query (-query) in addition to query from file (-path).
+  - If file specified (with -path) and not found, error written 
+    to console rather than embedded in job log.
+  - If file specified (with -path) and not found, operation aborts
+    rather than launching an empty grid.
+  - Made server and database parameters mandatory.
+  - Attached unit tests.
+
+
 ## 1.0.03 (October 7, 2015)
 
 IMPROVEMENTS:
