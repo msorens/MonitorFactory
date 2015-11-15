@@ -3,8 +3,8 @@
 function Start-SqlMonitor (
     [Parameter(ParameterSetName='FileQuery', Mandatory)][string]$path,
     [Parameter(ParameterSetName='InlineQuery', Mandatory)][string]$query,
-    [Parameter(Mandatory)][string]$server,
-    [Parameter(Mandatory)][string]$database,
+    [string]$server = $(throw 'Server must be specified'),
+    [string]$database = $(throw 'Database must be specified'),
     [string]$title = '',
     [string]$interval = '5sec'
 )
