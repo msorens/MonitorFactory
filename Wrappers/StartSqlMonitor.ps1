@@ -9,7 +9,10 @@ function Start-SqlMonitor (
     [string]$interval = '5sec'
 )
 {
-    if ($path) { $query = Get-Content $path }
+    if ($path) {
+        $query = Get-Content $path -ErrorAction Stop
+        if (!$query) { throw "$path`: no content found" }
+    }
     $monitorParams = @{
         AsJob = $true
         Interval = $interval
