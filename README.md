@@ -16,7 +16,7 @@ Usage
 ----------
 See extensive help available from the cmdlet itself: `Get-Help Start-Monitor`
 Also see some practical examples and detailed notes on how to use it
-on Simple-Talk.com: [Build Your Own Resource Monitor in a Jiffy](http://....)
+on Simple-Talk.com: [Build Your Own Resource Monitor in a Jiffy](https://www.simple-talk.com/sysadmin/powershell/build-your-own-resource-monitor-in-a-jiffy/)
 
 Here's a sample of what the output looks like:
 ![MonitorFactory sample with callouts](https://cloud.githubusercontent.com/assets/6817500/9609285/c510f2d2-5087-11e5-934c-53ad9054b167.jpg)
