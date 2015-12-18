@@ -395,7 +395,6 @@ $EventHandlers = @{
 	OnShown = {
 		UpdateDataTableAndHighlightAction
 		$tracker.TimingIntervalLabel.Text = GetIntervalText
-		$tracker.Grid.AutoResizeColumns()
 		$tracker.Form.Activate()
 	}
 	OnFormClosing = {
@@ -499,6 +498,16 @@ function UpdateDataGrid([System.Data.DataTable]$table)
 		$tracker.Grid.Sort($tracker.Grid.columns[($col.name)], $SortOrder)
 	}
 	$tracker.RowCountLabel.Text = ' Rows : {0} ' -f $table.Rows.count
+
+	$tracker.Grid.AutoResizeColumns()
+	$tracker.Grid.Columns | % {
+		if ($_.Width -gt $Default.MaxColumnWidth)
+		{
+			$_.AutoSizeMode = [DataGridViewAutoSizeColumnMode]::None
+			$_.Width = $Default.MaxColumnWidth
+			$tracker.Grid.Update()
+		}
+	}
 }
 
 function NotifyIfChanged()

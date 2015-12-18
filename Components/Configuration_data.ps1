@@ -26,6 +26,7 @@ $Default = @{
 
 	GridViewWidth               = 810
 	GridViewLength              = 410
+	MaxColumnWidth              = 400
 
 	WindowTitlePrefix           = 'PSMonitor'
 }
