@@ -28,8 +28,8 @@ that you want to revisit frequently. Then, instead of having to type all this...
 
 ```
 Start-Monitor { 
-    Invoke-Sqlcmd –InputFile TopTwentyQueries.sql -Server localhost -DB master
-} –AsJob –Interval 5sec –DisplayName 'Longest Running Queries'
+    Invoke-Sqlcmd -InputFile TopTwentyQueries.sql -Server localhost -Database master
+} -AsJob -Interval 5sec -DisplayName 'Longest Running Queries'
 ```
 you could use the much more compact
 
