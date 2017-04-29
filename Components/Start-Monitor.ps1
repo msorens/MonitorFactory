@@ -503,7 +503,7 @@ function UpdateDataGrid([System.Data.DataTable]$table)
 	$tracker.Grid.Columns | % {
 		if ($_.Width -gt $Default.MaxColumnWidth)
 		{
-			$_.AutoSizeMode = [DataGridViewAutoSizeColumnMode]::None
+			$_.AutoSizeMode = [System.Windows.Forms.DataGridViewAutoSizeColumnMode]::None
 			$_.Width = $Default.MaxColumnWidth
 			$tracker.Grid.Update()
 		}
