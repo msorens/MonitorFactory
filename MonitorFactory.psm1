@@ -1,4 +1,4 @@
-﻿
+
 Set-StrictMode -Version Latest
 
 Resolve-Path $PSScriptRoot\Components\*.ps1 |

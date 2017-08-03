@@ -1,4 +1,4 @@
-﻿Function Invoke-FlashWindow {
+Function Invoke-FlashWindow {
     <#
         .SYSNOPSIS
             Flashes a window that has been hidden or minimized to the taskbar
