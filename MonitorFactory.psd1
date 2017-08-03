@@ -66,7 +66,11 @@ Copyright = '(c) 2014-2015 Michael Sorens'
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = '*'
+FunctionsToExport = @(
+	'Start-Monitor',
+	'Start-MonitorSync',
+	'Invoke-FlashWindow'
+)
 
 # Cmdlets to export from this module
 CmdletsToExport = '*'

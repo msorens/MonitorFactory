@@ -123,4 +123,3 @@ Function Invoke-FlashWindow {
     }
 }
 
-Export-ModuleMember Invoke-FlashWindow

@@ -518,8 +518,3 @@ function NotifyIfChanged()
 	}
 }
 
-Export-ModuleMember Start-Monitor
-# Don't want this to be exposed but it is a necessity so it can
-# be found by the async (AsJob) code.
-Export-ModuleMember Start-MonitorSync
-
