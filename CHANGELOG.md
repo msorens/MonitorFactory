@@ -4,6 +4,15 @@ FEATURES:
 IMPROVEMENTS:
 BUG FIXES:
 
+## 1.0.05 (August 3, 2017)
+
+IMPROVEMENTS:
+  - Updated module manifest to latest PS5 template (from New-ModuleManifest)
+  - Centralized exported functions list to manifest for PSGallery compatibility
+  - Filled in manifest to support release to PSGallery
+  - Normalized several errant files to use ASCII encoding (instead of Unicode and UTF8)
+
+
 ## 1.0.04 (November 16, 2015)
 
 IMPROVEMENTS TO Start-SqlMonitor Wrapper:

@@ -9,7 +9,7 @@ for any data resources you like. All you need do is
 
 Installation
 ----------
-1. Unzip MonitorFactory-master.zip into your PowerShell Modules directory ($env:UserProfile\Documents\WindowsPowerShell\Modules) and drop the "-master" suffix on the extracted folder.
+1. If you have Windows 10 or later (or have updated your PS 3 or 4 environment with PowerShellGet), you can just run `Install-Module -Name MonitorFactory` to install this module from the [PowerShell Gallery](https://www.powershellgallery.com/packages/MonitorFactory). Otherwise, you can download it from [GitHub](https://github.com/msorens/MonitorFactory). After downloading, unzip MonitorFactory-master.zip into your PowerShell Modules directory ($env:UserProfile\Documents\WindowsPowerShell\Modules) and drop the "-master" suffix on the extracted folder.
 2. Import the module in your profile or import it manually: `Import-Module MonitorFactory`
 
 Usage
